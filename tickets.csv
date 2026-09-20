@@ -1,0 +1,5 @@
+ticket_id,customer_email,subject,body
+001,admin@acmecorp.com,URGENT: API Endpoint returning 502,Our production system is failing when calling the /v2/invoices endpoint. We are losing transactions.
+002,billing@starkind.com,Question about Q3 Invoice,The latest invoice shows a charge for 50 extra seats but we only added 10. Please clarify.
+003,cto@globex.com,Enterprise SLA limits,We are considering upgrading to the Enterprise tier. What are the guaranteed API rate limits?
+004,user@initech.com,Password reset not working,I am not receiving the password reset email to access the dashboard.
