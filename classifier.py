@@ -1,5 +1,7 @@
 import csv
 import boto3
+import json
+import re
 
 # boto3 automatically uses the credentials configured via 'aws configure'
 client = boto3.client("bedrock-runtime", region_name="us-east-1")
@@ -19,7 +21,15 @@ def classify_ticket(subject, body):
             messages=messages,
             system=[{"text": SYSTEM_PROMPT}]
         )
-        return response["output"]["message"]["content"][0]["text"]
+        raw_text = response["output"]["message"]["content"][0]["text"]
+
+        # Extraction of the JSON ignoring markdown and \n
+        match = re.search(r"\{.*\}", raw_text, re.DOTALL)
+        if match:
+            return json.loads(match.group(0))
+        else:
+            return "Error: No JSON structuration found"
+
     except Exception as e:
         return str(e)
 
